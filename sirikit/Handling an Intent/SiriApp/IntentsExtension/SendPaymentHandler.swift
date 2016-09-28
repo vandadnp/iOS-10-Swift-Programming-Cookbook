@@ -53,7 +53,7 @@ class SendPaymentHandler: INSendPaymentIntent, INSendPaymentIntentHandling {
   }
   
   func handle(sendPayment intent: INSendPaymentIntent,
-              completion: (INSendPaymentIntentResponse) -> Void) {
+              completion: @escaping (INSendPaymentIntentResponse) -> Void) {
     
     func report(code: INSendPaymentIntentResponseCode){
       completion(INSendPaymentIntentResponse(code: code, userActivity: nil))
@@ -75,7 +75,7 @@ class SendPaymentHandler: INSendPaymentIntent, INSendPaymentIntentHandling {
   }
   
   func confirm(sendPayment intent: INSendPaymentIntent,
-               completion: (INSendPaymentIntentResponse) -> Void) {
+               completion: @escaping (INSendPaymentIntentResponse) -> Void) {
     
     func report(code: INSendPaymentIntentResponseCode){
       completion(INSendPaymentIntentResponse(code: code, userActivity: nil))
@@ -112,7 +112,7 @@ class SendPaymentHandler: INSendPaymentIntent, INSendPaymentIntentHandling {
   
   //optional
   func resolvePayee(forSendPayment intent: INSendPaymentIntent,
-                    with completion: (INPersonResolutionResult) -> Void) {
+                    with completion: @escaping (INPersonResolutionResult) -> Void) {
     
     guard let payee = intent.payee else {
       
@@ -175,7 +175,7 @@ class SendPaymentHandler: INSendPaymentIntent, INSendPaymentIntentHandling {
   
   func resolveCurrencyAmount(
     forSendPayment intent: INSendPaymentIntent,
-    with completion: (INCurrencyAmountResolutionResult) -> Void) {
+    with completion: @escaping (INCurrencyAmountResolutionResult) -> Void) {
     
     let minimumPayment = 5.0
     let maximumPayment = 20.0
@@ -234,7 +234,7 @@ class SendPaymentHandler: INSendPaymentIntent, INSendPaymentIntentHandling {
   }
   
   func resolveNote(forSendPayment intent: INSendPaymentIntent,
-                   with completion: (INStringResolutionResult) -> Void) {
+                   with completion: @escaping (INStringResolutionResult) -> Void) {
     
     
     completion(.success(with: "This is your payment"))

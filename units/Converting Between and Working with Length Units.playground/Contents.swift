@@ -4,11 +4,11 @@ import UIKit
 
 let meters = Measurement(value: 5, unit: UnitLength.meters) //5.0 m
 let kilometers = Measurement(value: 1, unit: UnitLength.kilometers) //1.0 km
-meters.dynamicType //Measurement<UnitLength>
-kilometers.dynamicType //Measurement<UnitLength>
+type(of: meters) //Measurement<UnitLength>
+type(of: kilometers) //Measurement<UnitLength>
 
 let result = meters + kilometers //1005.0 m
-result.dynamicType //Measurement<UnitLength>
+type(of: result) //Measurement<UnitLength>
 
 let finalKilometers = result.converted(to: .kilometers) //1.005 km
 let finalMeters = result.converted(to: .meters) //1005.0 m

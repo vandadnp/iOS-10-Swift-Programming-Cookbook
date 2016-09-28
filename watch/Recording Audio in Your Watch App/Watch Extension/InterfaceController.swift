@@ -42,7 +42,7 @@ class InterfaceController: WKInterfaceController {
       WKAudioRecorderControllerOptionsAlwaysShowActionTitleKey : yes,
       WKAudioRecorderControllerOptionsAutorecordKey : no,
       WKAudioRecorderControllerOptionsMaximumDurationKey : oneMinute
-    ]
+    ] as [AnyHashable : Any]
     
     presentAudioRecorderController(
       withOutputURL: url,

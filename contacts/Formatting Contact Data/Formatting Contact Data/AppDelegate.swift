@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let toFetch =
       CNContactFormatter.descriptorForRequiredKeys(for: .fullName)
     
-    store.firstUnifiedContactMatchingName("john", toFetch: [toFetch]){
+    store.firstUnifiedContactMatching(name: "john", toFetch: [toFetch]){
       guard let contact = $0 else{
         return
       }
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let toFetch =
       CNContactFormatter.descriptorForRequiredKeys(for: style)
     
-    store.firstUnifiedContactMatchingName("julian", toFetch: [toFetch]){
+    store.firstUnifiedContactMatching(name: "julian", toFetch: [toFetch]){
       
       guard let contact = $0 else{
         return
@@ -64,9 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func example3(){
     
-    let toFetch = [CNContactPostalAddressesKey]
+    let toFetch = [CNContactPostalAddressesKey as NSString]
     
-    store.firstUnifiedContactMatchingName("john", toFetch: toFetch){
+    store.firstUnifiedContactMatching(name: "john", toFetch: toFetch){
       guard let contact = $0 else{
         return
       }
@@ -85,9 +85,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
   }
   
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     
-    ContactAuthorizer.authorizeContactsWithCompletionHandler{
+    ContactAuthorizer.authorizeContacts{
       if $0{
         self.example1()
         self.example2()

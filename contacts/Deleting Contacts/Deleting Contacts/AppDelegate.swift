@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func example1(){
     OperationQueue().addOperation{[unowned store] in
       let predicate = CNContact.predicateForContacts(matchingName: "john")
-      let toFetch = [CNContactEmailAddressesKey]
+      let toFetch = [CNContactEmailAddressesKey as NSString]
       
       do{
         
@@ -55,8 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
   }
   
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    ContactAuthorizer.authorizeContactsWithCompletionHandler{
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    ContactAuthorizer.authorizeContacts{
       if $0{
         self.example1()
       }

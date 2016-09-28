@@ -53,7 +53,7 @@ class IndexRequestHandler: CSIndexExtensionRequestHandler {
   override func searchableIndex(
     _ searchableIndex: CSSearchableIndex,
     reindexAllSearchableItemsWithAcknowledgementHandler
-    acknowledgementHandler: () -> Void) {
+    acknowledgementHandler: @escaping () -> Void) {
     
     for _ in indexedItems{
       //TODO: you can index the item here.
@@ -66,7 +66,7 @@ class IndexRequestHandler: CSIndexExtensionRequestHandler {
   override func searchableIndex(
     _ searchableIndex: CSSearchableIndex,
     reindexSearchableItemsWithIdentifiers identifiers: [String],
-    acknowledgementHandler: () -> Void) {
+    acknowledgementHandler: @escaping () -> Void) {
     
     //get all the identifiers strings that we have
     let ourIds = indexedItems.allIds()

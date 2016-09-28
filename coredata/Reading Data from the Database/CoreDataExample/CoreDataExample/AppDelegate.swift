@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
-    launchOptions: [NSObject: AnyObject]?) -> Bool {
+    launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     
     do{
       try writeData()

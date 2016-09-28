@@ -4,7 +4,7 @@ import UIKit
 
 let gradiens = Measurement(value: 100, unit: UnitAngle.gradians) //100.0 grad
 gradiens.converted(to: UnitAngle.degrees) //90°
-gradiens.dynamicType //Measurement<UnitAngle>
+type(of: gradiens) //Measurement<UnitAngle>
 
 let degrees = Measurement(value: 180, unit: UnitAngle.degrees) //180.0
 

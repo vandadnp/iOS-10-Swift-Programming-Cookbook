@@ -70,31 +70,31 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   }
   
   func getTimelineStartDate(for complication: CLKComplication,
-                            withHandler handler: (Date?) -> Void) {
+                            withHandler handler: @escaping (Date?) -> Void) {
     handler(dataProvider.allTrainsForToday().first!.departureTime as Date)
   }
   
   func getTimelineEndDate(for complication: CLKComplication,
-                          withHandler handler: (Date?) -> Void) {
+                          withHandler handler: @escaping (Date?) -> Void) {
     handler(dataProvider.allTrainsForToday().last!.departureTime)
   }
   
   func getSupportedTimeTravelDirections(
     for complication: CLKComplication,
-    withHandler handler: (CLKComplicationTimeTravelDirections) -> Void) {
+    withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void) {
     handler([.forward, .backward])
   }
   
   func getPrivacyBehavior(
     for complication: CLKComplication,
-    withHandler handler: (CLKComplicationPrivacyBehavior) -> Void) {
+    withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
     handler(.showOnLockScreen)
   }
   
   func getTimelineEntries(
     for complication: CLKComplication,
     before date: Date, limit: Int,
-    withHandler handler: (([CLKComplicationTimelineEntry]?) -> Void)) {
+    withHandler handler: @escaping (([CLKComplicationTimelineEntry]?) -> Void)) {
     
     let entries = dataProvider.allTrainsForToday().filter{
       date.compare($0.departureTime as Date) == .orderedDescending
@@ -108,7 +108,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   func getTimelineEntries(
     for complication: CLKComplication,
     after date: Date, limit: Int,
-    withHandler handler: (([CLKComplicationTimelineEntry]?) -> Void)) {
+    withHandler handler: @escaping (([CLKComplicationTimelineEntry]?) -> Void)) {
     
     let entries = dataProvider.allTrainsForToday().filter{
       date.compare($0.departureTime as Date) == .orderedAscending
@@ -122,7 +122,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   
   func getCurrentTimelineEntry(
     for complication: CLKComplication,
-    withHandler handler: ((CLKComplicationTimelineEntry?) -> Void)) {
+    withHandler handler: @escaping ((CLKComplicationTimelineEntry?) -> Void)) {
     
     if let train = dataProvider.allTrainsForToday().nextTrain(){
       handler(timelineEntryForTrain(train))
@@ -132,13 +132,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
   }
   
-  func getNextRequestedUpdateDate(handler: (Date?) -> Void) {
+  func getNextRequestedUpdateDate(handler: @escaping (Date?) -> Void) {
     handler(Date.endOfToday());
   }
   
   func getPlaceholderTemplate(
     for complication: CLKComplication,
-    withHandler handler: (CLKComplicationTemplate?) -> Void) {
+    withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
     if let data = dataProvider.allTrainsForToday().nextTrain(){
       handler(templateForTrain(data))
     } else {

@@ -10,7 +10,7 @@ import Intents
 
 class IntentHandler: INExtension{
   
-  override func handler(for intent: INIntent) -> AnyObject {
+  override func handler(for intent: INIntent) -> Any {
     
     if intent is INSendPaymentIntent{
       return SendPaymentHandler()
@@ -58,7 +58,7 @@ class IntentHandler: INExtension{
     }
   }
   
-  func resolveContent(forSendMessage intent: INSendMessageIntent, with completion: (INStringResolutionResult) -> Void) {
+  func resolveContent(forSendMessage intent: INSendMessageIntent, with completion: @escaping (INStringResolutionResult) -> Void) {
     if let text = intent.content, !text.isEmpty {
       completion(INStringResolutionResult.success(with: text))
     } else {
@@ -68,7 +68,7 @@ class IntentHandler: INExtension{
   
   // Once resolution is completed, perform validation on the intent and provide confirmation (optional).
   
-  func confirm(sendMessage intent: INSendMessageIntent, completion: (INSendMessageIntentResponse) -> Void) {
+  func confirm(sendMessage intent: INSendMessageIntent, completion: @escaping (INSendMessageIntentResponse) -> Void) {
     // Verify user is authenticated and your app is ready to send a message.
     
     let userActivity = NSUserActivity(activityType: NSStringFromClass(INSendMessageIntent.self))
@@ -78,7 +78,7 @@ class IntentHandler: INExtension{
   
   // Handle the completed intent (required).
   
-  func handle(sendMessage intent: INSendMessageIntent, completion: (INSendMessageIntentResponse) -> Void) {
+  func handle(sendMessage intent: INSendMessageIntent, completion: @escaping (INSendMessageIntentResponse) -> Void) {
     // Implement your application logic to send a message here.
     
     let userActivity = NSUserActivity(activityType: NSStringFromClass(INSendMessageIntent.self))
@@ -90,7 +90,7 @@ class IntentHandler: INExtension{
   
   // MARK: - INSearchForMessagesIntentHandling
   
-  func handle(searchForMessages intent: INSearchForMessagesIntent, completion: (INSearchForMessagesIntentResponse) -> Void) {
+  func handle(searchForMessages intent: INSearchForMessagesIntent, completion: @escaping (INSearchForMessagesIntentResponse) -> Void) {
     // Implement your application logic to find a message that matches the information in the intent.
     
     let userActivity = NSUserActivity(activityType: NSStringFromClass(INSearchForMessagesIntent.self))
@@ -108,7 +108,7 @@ class IntentHandler: INExtension{
   
   // MARK: - INSetMessageAttributeIntentHandling
   
-  func handle(setMessageAttribute intent: INSetMessageAttributeIntent, completion: (INSetMessageAttributeIntentResponse) -> Void) {
+  func handle(setMessageAttribute intent: INSetMessageAttributeIntent, completion: @escaping (INSetMessageAttributeIntentResponse) -> Void) {
     // Implement your application logic to set the message attribute here.
     
     let userActivity = NSUserActivity(activityType: NSStringFromClass(INSetMessageAttributeIntent.self))

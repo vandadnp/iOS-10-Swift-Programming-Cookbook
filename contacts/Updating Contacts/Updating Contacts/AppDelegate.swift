@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     OperationQueue().addOperation{[unowned store] in
       let predicate = CNContact.predicateForContacts(matchingName: "john")
-      let toFetch = [CNContactEmailAddressesKey]
+      let toFetch = [CNContactEmailAddressesKey as NSString]
       
       do{
         let contacts = try store.unifiedContacts(matching: predicate,
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let john = contact.mutableCopy() as! CNMutableContact
         
         let emailAddress = CNLabeledValue(label: CNLabelWork,
-                                          value: "newemail@work.com")
+                                          value: "newemail@work.com" as NSString)
         
         john.emailAddresses.append(emailAddress)
         
@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func example2(){
     
     OperationQueue().addOperation{[unowned store] in
-      let keys = [CNContactNoteKey]
+      let keys = [CNContactNoteKey as NSString]
       let req = CNContactFetchRequest(keysToFetch: keys)
       do{
         try store.enumerateContacts(with: req){contact, stop in
@@ -98,7 +98,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   //remove illegal characters from the first and last name of all contacts
   func example3(){
     OperationQueue().addOperation{[unowned store] in
-      let keys = [CNContactGivenNameKey, CNContactFamilyNameKey]
+      let keys = [CNContactGivenNameKey as NSString,
+                  CNContactFamilyNameKey as NSString]
       let req = CNContactFetchRequest(keysToFetch: keys)
       do{
         try store.enumerateContacts(with: req){contact, stop in
@@ -154,9 +155,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions
-    launchOptions: [NSObject: AnyObject]?) -> Bool {
+    launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     
-    ContactAuthorizer.authorizeContactsWithCompletionHandler{succeeded in
+    ContactAuthorizer.authorizeContacts{succeeded in
       if succeeded{
         self.example1()
         self.example2()

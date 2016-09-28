@@ -12,31 +12,31 @@ import Intents
 class SendPaymentHandler: INSendPaymentIntent, INSendPaymentIntentHandling {
   
   func confirm(sendPayment intent: INSendPaymentIntent,
-               completion: (INSendPaymentIntentResponse) -> Void) {
+               completion: @escaping (INSendPaymentIntentResponse) -> Void) {
     
   }
   
   func handle(sendPayment intent: INSendPaymentIntent,
-              completion: (INSendPaymentIntentResponse) -> Void) {
+              completion: @escaping (INSendPaymentIntentResponse) -> Void) {
     
     
   }
   
   //optional
   func resolvePayee(forSendPayment intent: INSendPaymentIntent,
-                    with completion: (INPersonResolutionResult) -> Void) {
+                    with completion: @escaping (INPersonResolutionResult) -> Void) {
     
   }
   
   //optional
   func resolveCurrencyAmount(
     forSendPayment intent: INSendPaymentIntent,
-    with completion: (INCurrencyAmountResolutionResult) -> Void) {
+    with completion: @escaping (INCurrencyAmountResolutionResult) -> Void) {
     
   }
   
   func resolveNote(forSendPayment intent: INSendPaymentIntent,
-                   with completion: (INStringResolutionResult) -> Void) {
+                   with completion: @escaping (INStringResolutionResult) -> Void) {
     
   }
   

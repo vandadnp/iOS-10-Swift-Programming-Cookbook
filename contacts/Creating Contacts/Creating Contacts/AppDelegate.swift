@@ -39,9 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //set the email addresses
     let homeEmail = CNLabeledValue(label: CNLabelHome,
-                                   value: "foo@home")
+                                   value: "foo@home" as NSString)
     let workEmail = CNLabeledValue(label: CNLabelWork,
-                                   value: "bar@home")
+                                   value: "bar@home" as NSString)
     fooBar.emailAddresses = [homeEmail, workEmail]
     
     //job info
@@ -103,12 +103,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
   }
   
-  func application(
-    _ application: UIApplication,
-    didFinishLaunchingWithOptions
-    launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions
+    launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     
-    ContactAuthorizer.authorizeContactsWithCompletionHandler {succeeded in
+    ContactAuthorizer.authorizeContacts{succeeded in
       if succeeded{
         self.createContact()
       } else{
@@ -117,6 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     return true
+    
   }
   
 }

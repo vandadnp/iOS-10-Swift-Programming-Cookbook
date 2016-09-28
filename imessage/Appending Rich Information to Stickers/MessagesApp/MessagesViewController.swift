@@ -83,7 +83,7 @@ StickersViewControllerDelegate {
     
     let renderer = UIGraphicsImageRenderer(bounds: rect)
     return renderer.image {context in
-      let bgColor: UIColor = .black()
+      let bgColor: UIColor = .black
       bgColor.setFill()
       context.fill(rect)
       image.draw(at: .zero)

@@ -36,7 +36,7 @@ public class Indexer{
     attr.keywords = ["reddit", "subreddit", "today", "i", "learned"]
     
     
-    if let url = Bundle(for: self.dynamicType)
+    if let url = Bundle(for: type(of: self))
       .url(forResource: "Icon", withExtension: "png"){
       attr.thumbnailData = try? Data(contentsOf: url)
     }

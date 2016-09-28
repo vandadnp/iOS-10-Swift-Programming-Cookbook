@@ -16,5 +16,5 @@ extension CGSize{
 }
 
 let view = UIView(frame: 300.toSize.toRectWithZeroOrigin)
-view.backgroundColor = .blue()
+view.backgroundColor = .blue
 PlaygroundPage.current.liveView = view

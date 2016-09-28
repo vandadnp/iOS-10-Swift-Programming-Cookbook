@@ -10,8 +10,8 @@ import Foundation
 import Contacts
 
 public extension CNContactStore{
-  func firstUnifiedContactMatchingName(_ name: String,
-    toFetch: [CNKeyDescriptor], output: (CNContact?) -> Void){
+  func firstUnifiedContactMatching(name: String,
+    toFetch: [CNKeyDescriptor], output: @escaping (CNContact?) -> Void){
     
     OperationQueue().addOperation{
       let predicate = CNContact.predicateForContacts(matchingName: name)

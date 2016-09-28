@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication,
                    continue userActivity: NSUserActivity,
-                   restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+                   restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     
     guard userActivity.activityType == CSSearchableItemActionType,
       let id = userActivity
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
   }
   
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     
     Indexer().doIndex()
     

@@ -38,7 +38,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate{
   
   func session(
     _ session: WCSession,
-    didReceiveApplicationContext applicationContext: [String : AnyObject]) {
+    didReceiveApplicationContext applicationContext: [String : Any]) {
     
     guard let people = applicationContext["people"] as?
       Array<[String : AnyObject]>, people.count > 0 else{

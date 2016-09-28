@@ -67,7 +67,7 @@ class ViewController: UIViewController, WCSessionDelegate {
   }
   
   func session(_ session: WCSession,
-               didReceiveMessage message: [String : AnyObject]) {
+               didReceiveMessage message: [String : Any]) {
     
     guard let msg = message["msg"] as? Int,
       let value = PredefinedMessage(rawValue: msg) else{

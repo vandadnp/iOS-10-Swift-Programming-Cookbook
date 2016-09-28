@@ -18,7 +18,7 @@ class ViewController: UIViewController{
   func example1(){
     
     let toFetch = [CNContactViewController.descriptorForRequiredKeys()]
-    store.firstUnifiedContactMatchingName("john", toFetch: toFetch){
+    store.firstUnifiedContactMatching(name: "john", toFetch: toFetch){
       
       guard let contact = $0 else{
         print("No contact was found")
@@ -42,7 +42,7 @@ class ViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    ContactAuthorizer.authorizeContactsWithCompletionHandler{
+    ContactAuthorizer.authorizeContacts{
       if $0{
         self.example1()
       }

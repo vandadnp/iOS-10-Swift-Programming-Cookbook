@@ -8,8 +8,8 @@
 
 import UIKit
 
-func +<T: OptionSet where T.RawValue : SignedInteger>
-  (lhs: T, rhs: T) -> T{
+func +<T: OptionSet>
+  (lhs: T, rhs: T) -> T where T.RawValue : SignedInteger{
   return T(rawValue: lhs.rawValue | rhs.rawValue)
 }
 

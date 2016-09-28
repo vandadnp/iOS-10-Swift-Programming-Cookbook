@@ -32,7 +32,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate{
   }
   
   func session(_ session: WCSession,
-               didReceiveUserInfo userInfo: [String : AnyObject]) {
+               didReceiveUserInfo userInfo: [String : Any] = [:]) {
     
     guard let bundleVersion = userInfo[kCFBundleIdentifierKey as String]
       as? String else{

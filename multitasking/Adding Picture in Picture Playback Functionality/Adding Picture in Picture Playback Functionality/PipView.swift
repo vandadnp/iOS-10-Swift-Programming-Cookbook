@@ -27,7 +27,7 @@ extension UIView : Pippable{
     set{pipLayer.player = newValue}
   }
   
-  override public func awakeFromNib() {
+  override open func awakeFromNib() {
     super.awakeFromNib()
     backgroundColor = .black
     

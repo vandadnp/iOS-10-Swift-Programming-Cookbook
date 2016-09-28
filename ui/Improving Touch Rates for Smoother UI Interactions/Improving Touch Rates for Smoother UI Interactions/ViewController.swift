@@ -76,11 +76,11 @@ class MyView : UIView{
     
     for point in points{
       
-      con?.moveTo(x: point.x, y: point.y)
+      con?.move(to: point)
       
       if let last = points.last, point != last{
         let next = points[points.index(of: point)! + 1]
-        con?.addLineTo(x: next.x, y: next.y)
+        con?.addLine(to: next)
       }
       
     }

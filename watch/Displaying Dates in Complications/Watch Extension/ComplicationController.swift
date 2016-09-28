@@ -106,31 +106,31 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   }
   
   func getTimelineStartDate(for complication: CLKComplication,
-                            withHandler handler: (Date?) -> Void) {
+                            withHandler handler: @escaping (Date?) -> Void) {
     handler(dataProvider.allHolidays().first!.date as Date)
   }
   
   func getTimelineEndDate(for complication: CLKComplication,
-                          withHandler handler: (Date?) -> Void) {
+                          withHandler handler: @escaping (Date?) -> Void) {
     handler(dataProvider.allHolidays().last!.date)
   }
   
   func getSupportedTimeTravelDirections(
     for complication: CLKComplication,
-    withHandler handler: (CLKComplicationTimeTravelDirections) -> Void) {
+    withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void) {
     handler([.forward, .backward])
   }
   
   func getPrivacyBehavior(
     for complication: CLKComplication,
-    withHandler handler: (CLKComplicationPrivacyBehavior) -> Void) {
+    withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
     handler(.showOnLockScreen)
   }
   
   func getTimelineEntries(
     for complication: CLKComplication,
     before date: Date, limit: Int,
-    withHandler handler: (([CLKComplicationTimelineEntry]?) -> Void)) {
+    withHandler handler: @escaping (([CLKComplicationTimelineEntry]?) -> Void)) {
     
     let entries = dataProvider.allHolidays().filter{
       date.compare($0.date as Date) == .orderedDescending
@@ -144,7 +144,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   func getTimelineEntries(
     for complication: CLKComplication,
     after date: Date, limit: Int,
-    withHandler handler: (([CLKComplicationTimelineEntry]?) -> Void)) {
+    withHandler handler: @escaping (([CLKComplicationTimelineEntry]?) -> Void)) {
     
     let entries = dataProvider.allHolidays().filter{
       date.compare($0.date as Date) == .orderedAscending
@@ -158,7 +158,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   
   func getCurrentTimelineEntry(
     for complication: CLKComplication,
-    withHandler handler: ((CLKComplicationTimelineEntry?) -> Void)) {
+    withHandler handler: @escaping ((CLKComplicationTimelineEntry?) -> Void)) {
     
     if let first = dataProvider.allHolidays().nextThreeHolidays().first{
       handler(timelineEntryForHoliday(first))
@@ -168,13 +168,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
   }
   
-  func getNextRequestedUpdateDate(handler: (Date?) -> Void) {
+  func getNextRequestedUpdateDate(handler: @escaping (Date?) -> Void) {
     handler(Date().plus10Minutes());
   }
   
   func getPlaceholderTemplate(
     for complication: CLKComplication,
-    withHandler handler: (CLKComplicationTemplate?) -> Void) {
+    withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
     if let holiday = dataProvider.allHolidays().nextThreeHolidays().first{
       handler(templateForHoliday(holiday))
     } else {

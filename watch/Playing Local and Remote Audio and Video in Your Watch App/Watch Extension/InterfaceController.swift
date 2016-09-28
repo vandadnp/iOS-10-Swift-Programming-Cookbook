@@ -35,7 +35,7 @@ class InterfaceController: WKInterfaceController {
       WKMediaPlayerControllerOptionsStartTimeKey : 4.0 as TimeInterval,
       WKMediaPlayerControllerOptionsVideoGravityKey : gravity,
       WKMediaPlayerControllerOptionsLoopsKey : NSNumber(value: true),
-      ]
+    ] as [AnyHashable : Any]
     
     presentMediaPlayerController(with: url, options: options) {
       didPlayToEnd, endTime, error in

@@ -44,8 +44,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate{
   }
   
   func session(_ session: WCSession,
-               didReceiveMessage message: [String : AnyObject],
-               replyHandler: ([String : AnyObject]) -> Void) {
+               didReceiveMessage message: [String : Any],
+               replyHandler: @escaping ([String : Any]) -> Void) {
     
     guard message["msg"] is String else{
       replyHandler(["msg" : "failed"])

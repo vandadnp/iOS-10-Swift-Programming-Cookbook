@@ -11,18 +11,18 @@ import Contacts
 
 public final class ContactAuthorizer{
   
-  public class func authorizeContactsWithCompletionHandler(
-    _ completionHandler: (succeeded: Bool) -> Void){
+  public class func authorizeContacts(completionHandler
+    : @escaping (_ succeeded: Bool) -> Void){
     
     switch CNContactStore.authorizationStatus(for: .contacts){
     case .authorized:
-      completionHandler(succeeded: true)
+      completionHandler(true)
     case .notDetermined:
       CNContactStore().requestAccess(for: .contacts){succeeded, err in
-        completionHandler(succeeded: err == nil && succeeded)
+        completionHandler(err == nil && succeeded)
       }
     default:
-      completionHandler(succeeded: false)
+      completionHandler(false)
     }
     
   }

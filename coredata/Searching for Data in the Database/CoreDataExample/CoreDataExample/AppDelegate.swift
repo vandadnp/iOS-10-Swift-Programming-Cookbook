@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let context = persistentContainer.viewContext
     let request: NSFetchRequest<Person> = Person.fetchRequest()
     
-    request.predicate = Predicate(format: "firstName == %@ && lastName == %@",
+    request.predicate = NSPredicate(format: "firstName == %@ && lastName == %@",
                                   argumentArray: [fName, lName])
     
     return try context.fetch(request)
@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let context = persistentContainer.viewContext
     let request: NSFetchRequest<Person> = Person.fetchRequest()
     
-    request.predicate = Predicate(format: "firstName LIKE[c] %@",
+    request.predicate = NSPredicate(format: "firstName LIKE[c] %@",
                                   argumentArray: ["\(char)*"])
     
     return try context.fetch(request)
@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let request: NSFetchRequest<Person> = Person.fetchRequest()
     request.relationshipKeyPathsForPrefetching = ["cars"]
     
-    request.predicate = Predicate(format: "ANY cars.maker ==[c] %@",
+    request.predicate = NSPredicate(format: "ANY cars.maker ==[c] %@",
                                   argumentArray: [maker])
     
     return try context.fetch(request)
@@ -107,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
-    launchOptions: [NSObject: AnyObject]?) -> Bool {
+    launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     
     do{
       try writeData()
@@ -172,7 +172,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          * The store could not be migrated to the current model version.
          Check the error message to determine what the actual problem was.
          */
-        fatalError("Unresolved error \(error), \(error.userInfo)")
+        fatalError("Unresolved error \(error), \((error as NSError).userInfo)")
       }
     })
     return container

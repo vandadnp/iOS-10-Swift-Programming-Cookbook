@@ -36,9 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
   }
   
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions
-    launchOptions: [NSObject : AnyObject]?) -> Bool {
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions
+    launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     
     registerForNotifications()
     
@@ -65,22 +66,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     scheduleNotification()
   }
   
-  func application(_ application: UIApplication,
-                   handleActionWithIdentifier identifier: String?,
-                   for notification: UILocalNotification,
-                   withResponseInfo responseInfo: [NSObject : AnyObject],
-                   completionHandler: () -> Void) {
+func application(_ application: UIApplication,
+                 handleActionWithIdentifier identifier: String?,
+                 for notification: UILocalNotification,
+                 withResponseInfo responseInfo: [AnyHashable : Any],
+                 completionHandler: @escaping () -> Void) {
+  
+  if let text = responseInfo[UIUserNotificationActionResponseTypedTextKey]
+    as? String{
     
-    if let text = responseInfo[UIUserNotificationActionResponseTypedTextKey]
-      as? String{
-      
-      print(text)
-      //TODO: now you have access to this text
-      
-    }
-    
-    completionHandler()
+    print(text)
+    //TODO: now you have access to this text
     
   }
+  
+  completionHandler()
+  
+}
   
 }

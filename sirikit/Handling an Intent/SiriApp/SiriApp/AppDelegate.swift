@@ -15,22 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
   
-  typealias SiriAccessCompletionHandler = (succeeded: Bool) -> Void
+  typealias SiriAccessCompletionHandler = (Bool) -> Void
   func requestSiriAccess(
-    completionHandler: SiriAccessCompletionHandler){
+    completionHandler: @escaping SiriAccessCompletionHandler){
     
     INPreferences.requestSiriAuthorization {status in
       switch status{
       case .authorized:
-        completionHandler(succeeded: true)
+        completionHandler(true)
       default:
-        completionHandler(succeeded: false)
+        completionHandler(false)
       }
     }
     
   }
   
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     // Override point for customization after application launch.
     
     return true

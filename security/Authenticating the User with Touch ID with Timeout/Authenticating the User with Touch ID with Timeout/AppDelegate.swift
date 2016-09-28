@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           kSecAttrAccessControl.str() : flags,
           kSecReturnData.str() : kCFBooleanTrue,
           kSecUseAuthenticationContext.str() : context,
-          ]
+        ] as NSDictionary
         
         //now attempt to use the attrs with SecItemCopyMatching
         
@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
   }
   
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     // Override point for customization after application launch.
     
     example1()

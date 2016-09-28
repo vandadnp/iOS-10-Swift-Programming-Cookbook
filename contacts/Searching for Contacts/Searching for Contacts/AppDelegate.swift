@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
       let predicate = CNContact.predicateForContacts(matchingName: "john")
       
-      let toFetch = [CNContactGivenNameKey, CNContactFamilyNameKey]
+      let toFetch = [CNContactGivenNameKey as NSString, CNContactFamilyNameKey as NSString]
       
       do{
         let contacts = try store.unifiedContacts(
@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func example2(){
     
     OperationQueue().addOperation{[unowned store] in
-      let toFetch = [CNContactGivenNameKey, CNContactFamilyNameKey]
+      let toFetch = [CNContactGivenNameKey as NSString, CNContactFamilyNameKey as NSString]
       let request = CNContactFetchRequest(keysToFetch: toFetch)
       request.predicate = CNContact.predicateForContacts(matchingName: "john")
       
@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func example3(){
     
     OperationQueue().addOperation{[unowned store] in
-      var toFetch = [CNContactImageDataAvailableKey]
+      var toFetch = [CNContactImageDataAvailableKey as NSString]
       let predicate = CNContact.predicateForContacts(matchingName: "foo")
       do{
         let contacts = try store.unifiedContacts(matching: predicate,
@@ -89,7 +89,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(UIImage(data: contact.imageData!))
           }
           else {
-            toFetch += [CNContactImageDataKey, CNContactGivenNameKey]
+            toFetch += [CNContactImageDataKey as NSString,
+                        CNContactGivenNameKey as NSString]
             do{
               let contact = try store.unifiedContact(
                 withIdentifier: contact.identifier, keysToFetch: toFetch)
@@ -109,12 +110,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
   }
   
+  
+  
   //fetch a contact with the given identifier
   func example4(){
     
     OperationQueue().addOperation{[unowned store] in
       let id = "AECF6A0E-6BCB-4A46-834F-1D8374E6FE0A:ABPerson"
-      let toFetch = [CNContactGivenNameKey, CNContactFamilyNameKey]
+      let toFetch = [CNContactGivenNameKey as NSString,
+                     CNContactFamilyNameKey as NSString]
       
       do{
         
@@ -135,9 +139,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions
-    launchOptions: [NSObject: AnyObject]?) -> Bool {
+    launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     
-    ContactAuthorizer.authorizeContactsWithCompletionHandler{succeeded in
+    ContactAuthorizer.authorizeContacts{succeeded in
       
       if succeeded{
         self.example1()

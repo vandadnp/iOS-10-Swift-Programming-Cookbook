@@ -67,7 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return person
   }
   
-  func writeManyPersonObjectsToDatabase(_ completion: () -> Void) throws{
+  func writeManyPersonObjectsToDatabase(
+    _ completion: @escaping () -> Void) throws{
     
     let context = persistentContainer.newBackgroundContext()
     context.automaticallyMergesChangesFromParent = true
@@ -106,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
-    launchOptions: [NSObject: AnyObject]?) -> Bool {
+    launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     
     do{
       try writeManyPersonObjectsToDatabase({[weak self] in

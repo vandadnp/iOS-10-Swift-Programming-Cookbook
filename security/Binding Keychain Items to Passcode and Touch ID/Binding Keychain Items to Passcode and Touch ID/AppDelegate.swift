@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       kSecValueData.str() : data,
       kSecUseAuthenticationUI.str() : kSecUseAuthenticationUIAllow.str(),
       kSecAttrAccessControl.str() : flags,
-      ]
+      ] as NSDictionary
     
     OperationQueue().addOperation{
       guard SecItemAdd(attrs, nil) == errSecSuccess else{
@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   
   
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     // Override point for customization after application launch.
     example1()
     

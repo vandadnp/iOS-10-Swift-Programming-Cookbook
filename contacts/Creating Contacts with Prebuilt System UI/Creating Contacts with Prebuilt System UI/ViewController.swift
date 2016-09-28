@@ -50,7 +50,7 @@ class ViewController: UIViewController, CNContactViewControllerDelegate{
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    ContactAuthorizer.authorizeContactsWithCompletionHandler{
+    ContactAuthorizer.authorizeContacts{
       if $0{
         self.example1()
       }

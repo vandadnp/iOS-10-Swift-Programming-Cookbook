@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     let options = [
       NSDocumentTypeDocumentAttribute : NSRTFTextDocumentType,
       NSCharacterEncodingDocumentAttribute : String.Encoding.utf8.rawValue
-      ] as [String : AnyObject]
+      ] as [String : Any]
     
     do{
       let str = try NSAttributedString(data: asset.data, options: options,

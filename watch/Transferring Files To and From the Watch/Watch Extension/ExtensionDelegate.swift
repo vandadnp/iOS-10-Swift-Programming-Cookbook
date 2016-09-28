@@ -39,8 +39,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate{
         return
     }
     
-    ...
-    
     do{
       let str = try String(NSString(contentsOf: file.fileURL,
                                     encoding: String.Encoding.utf8.rawValue))
