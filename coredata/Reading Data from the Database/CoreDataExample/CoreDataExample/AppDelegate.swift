@@ -77,14 +77,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       do{
         let person = try readData()
         print("Successfully read the person")
-        print(person.firstName)
-        print(person.lastName)
+        print(person.firstName ?? "")
+        print(person.lastName ?? "")
         
         if let cars = person.cars?.allObjects as? [Car], cars.count > 0{
           cars.enumerated().forEach{offset, car in
             print("Car #\(offset + 1)")
-            print(car.maker)
-            print(car.model)
+            print(car.maker ?? "")
+            print(car.model ?? "")
           }
         }
         
